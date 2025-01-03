@@ -10,58 +10,159 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f9;
-      color: #333;
+      background-color: #000;
+      color: #FFFFFF;
+      background-image: linear-gradient(to right, #141414, #000);
     }
 
     .container {
-      max-width: 600px;
+      max-width: 800px;
       margin: 50px auto;
       padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      background: #1E1E1E;
+      border-radius: 0;
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.6);
+      border: 1px solid #00AAAA;
     }
 
     h1 {
       text-align: center;
-      color: #444;
+      color: #00AAAA;
+      text-shadow: 0 0 15px #00AAAA;
     }
 
-    form label {
-      display: block;
-      margin: 15px 0 5px;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    label {
+      flex: 1;
       font-weight: bold;
+      color: #00AAAA;
     }
 
-    form input,
-    form select,
-    form button {
+    input[type="number"] {
+      flex: 2;
+      padding: 10px;
+      border: 2px solid #00AAAA;
+      border-radius: 0;
+      background-color: #000;
+      color: #FFFFFF;
+      box-shadow: inset 0 0 5px #00AAAA;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      box-shadow: inset 0 0 10px #00AAAA, 0 0 10px #00AAAA;
+    }
+
+    .radio-group {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .radio-group-gender {
+      flex: 2;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 0px;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .radio-group .explanation {
+      font-size: 12px;
+      color: #AAAAAA;
+    }
+
+    input[type="radio"] {
+      accent-color: #00AAAA;
+    }
+
+    button {
       width: 100%;
       padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-
-    form button {
-      background-color: #007BFF;
-      color: white;
+      background-color: #00AAAA;
+      color: #000;
       cursor: pointer;
       border: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
-    form button:hover {
-      background-color: #0056b3;
+    button:hover {
+      background-color: #0099CC;
+      box-shadow: 0 0 15px #00AAAA;
     }
 
     .result {
       margin-top: 20px;
-      padding: 10px;
-      background-color: #e9f7ef;
-      border: 1px solid #d4edda;
-      border-radius: 5px;
+      padding: 20px;
+      background-color: #222;
+      border: 2px solid #00AAAA;
+      border-radius: 0;
+      color: #00AAAA;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .result p {
+      margin: 10px 0;
+    }
+
+    .result p strong {
+      color: #00AAAA;
+    }
+
+    /* Background design */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at center, rgba(0, 255, 255, 0.1), transparent);
+      z-index: -1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background-repeat: no-repeat;
+      background-image: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
+      animation: rotateBackground 20s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes rotateBackground {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
   </style>
 </head>
@@ -70,43 +171,67 @@
   <div class="container">
     <h1>Calorie Calculator</h1>
     <form id="calorieForm">
-      <label for="gender">Gender:</label>
-      <select id="gender" required>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <div class="radio-group-gender">
+          <label><input type="radio" name="gender" value="male" required> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+        </div>
+      </div>
 
-      <label for="age">Age (years):</label>
-      <input type="number" id="age" min="1" required>
+      <div class="form-group">
+        <label for="age">Age (years):</label>
+        <input type="number" id="age" min="1" required>
+      </div>
 
-      <label for="weight">Weight (kg):</label>
-      <input type="number" id="weight" min="1" required>
+      <div class="form-group">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" min="1" required>
+      </div>
 
-      <label for="height">Height (cm):</label>
-      <input type="number" id="height" min="1" required>
+      <div class="form-group">
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" min="1" required>
+      </div>
 
-      <label for="activity">Activity Level:</label>
-      <select id="activity" required>
-        <option value="1.2">Sedentary (little or no exercise)</option>
-        <option value="1.375">Lightly active (light exercise/sports 1-3 days/week)</option>
-        <option value="1.55">Moderately active (moderate exercise/sports 3-5 days/week)</option>
-        <option value="1.725">Very active (hard exercise/sports 6-7 days/week)</option>
-        <option value="1.9">Super active (very hard exercise/sports, physical job)</option>
-      </select>
+      <div class="form-group">
+        <label for="activity">Activity Level:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="activity" value="1.2" required> Sedentary
+            <span class="explanation">(Little or no exercise)</span>
+          </label>
+          <label><input type="radio" name="activity" value="1.375"> Lightly active
+            <span class="explanation">(Light exercise/sports 1-3 days per week)</span>
+          </label>
+          <label><input type="radio" name="activity" value="1.55"> Moderately active
+            <span class="explanation">(Moderate exercise/sports 3-5 days per week)</span>
+          </label>
+          <label><input type="radio" name="activity" value="1.725"> Very active
+            <span class="explanation">(Hard exercise/sports 6-7 days per week)</span>
+          </label>
+          <label><input type="radio" name="activity" value="1.9"> Super active
+            <span class="explanation">(Very hard exercise, physical job, or training twice a day)</span>
+          </label>
+        </div>
+      </div>
 
       <button type="button" onclick="calculateCalories()">Calculate</button>
     </form>
 
-    <div class="result" id="result"></div>
+    <div class="result" id="result">
+      <p><strong>BMR:</strong> 0.00 kcal/day</p>
+      <p><strong>TDEE:</strong> 0.00 kcal/day</p>
+      <p><strong>TEF:</strong> 0.00 kcal/day</p>
+    </div>
   </div>
 
   <script>
     function calculateCalories() {
-      const gender = document.getElementById("gender").value;
+      const gender = document.querySelector('input[name="gender"]:checked').value;
       const age = parseInt(document.getElementById("age").value);
       const weight = parseFloat(document.getElementById("weight").value);
       const height = parseFloat(document.getElementById("height").value);
-      const activity = parseFloat(document.getElementById("activity").value);
+      const activity = parseFloat(document.querySelector('input[name="activity"]:checked').value);
 
       if (!age || !weight || !height || !activity) {
         alert("Please fill in all fields correctly.");
