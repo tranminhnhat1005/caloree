@@ -22,13 +22,13 @@
       background: #1E1E1E;
       border-radius: 0;
       box-shadow: 0 4px 20px rgba(0, 255, 255, 0.6);
-      border: 1px solid #00AAAA;
+      border: 1px solid #00FFFF;
     }
 
     h1 {
       text-align: center;
-      color: #00AAAA;
-      text-shadow: 0 0 15px #00AAAA;
+      color: #00FFFF;
+      text-shadow: 0 0 15px #00FFFF;
     }
 
     form {
@@ -46,22 +46,22 @@
     label {
       flex: 1;
       font-weight: bold;
-      color: #00AAAA;
+      color: #00FFFF;
     }
 
     input[type="number"] {
       flex: 2;
       padding: 10px;
-      border: 2px solid #00AAAA;
+      border: 2px solid #00FFFF;
       border-radius: 0;
       background-color: #000;
       color: #FFFFFF;
-      box-shadow: inset 0 0 5px #00AAAA;
+      box-shadow: inset 0 0 5px #00FFFF;
     }
 
     input[type="number"]:focus {
       outline: none;
-      box-shadow: inset 0 0 10px #00AAAA, 0 0 10px #00AAAA;
+      box-shadow: inset 0 0 10px #00FFFF, 0 0 10px #00FFFF;
     }
 
     .radio-group {
@@ -91,13 +91,14 @@
     }
 
     input[type="radio"] {
-      accent-color: #00AAAA;
+      accent-color: #00FFFF;
     }
 
     button {
+      margin-top: 20px;
       width: 100%;
       padding: 10px;
-      background-color: #00AAAA;
+      background-color: #00FFFF;
       color: #000;
       cursor: pointer;
       border: none;
@@ -107,16 +108,16 @@
 
     button:hover {
       background-color: #0099CC;
-      box-shadow: 0 0 15px #00AAAA;
+      box-shadow: 0 0 15px #00FFFF;
     }
 
     .result {
-      margin-top: 20px;
+      margin-top: 40px;
       padding: 20px;
-      background-color: #222;
-      border: 2px solid #00AAAA;
+      background-color: #000;
+      border: 2px solid #00FFFF;
       border-radius: 0;
-      color: #00AAAA;
+      color: #00FFFF;
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
       text-align: center;
       font-size: 18px;
@@ -127,7 +128,14 @@
     }
 
     .result p strong {
-      color: #00AAAA;
+      color: #00FFFF;
+    }
+
+    .result .explanation {
+      font-size: 14px;
+      color: #AAAAAA;
+      margin-top: 10px;
+      text-align: left;
     }
 
     /* Background design */
@@ -219,9 +227,15 @@
     </form>
 
     <div class="result" id="result">
-      <p><strong>BMR:</strong> 0.00 kcal/day</p>
-      <p><strong>TDEE:</strong> 0.00 kcal/day</p>
-      <p><strong>TEF:</strong> 0.00 kcal/day</p>
+      <p>BMR: <strong>0.00</strong> kcal/day</p>
+      <div class="explanation">BMR (Basal Metabolic Rate) is the number of calories your body needs to maintain basic
+        physiological functions like breathing and circulation while at rest.</div>
+      <p>TDEE: <strong>0.00</strong> kcal/day</p>
+      <div class="explanation">TDEE (Total Daily Energy Expenditure) is the total number of calories you burn in a day,
+        considering your activity level.</div>
+      <p>TEF: <strong>0.00</strong> kcal/day</p>
+      <div class="explanation">TEF (Thermic Effect of Food) is the amount of calories burned during the process of
+        digesting and metabolizing food, typically around 10% of TDEE.</div>
     </div>
   </div>
 
@@ -250,9 +264,12 @@
       const TEF = TDEE * 0.1;
 
       document.getElementById("result").innerHTML = `
-                <p><strong>BMR:</strong> ${BMR.toFixed(2)} kcal/day</p>
-                <p><strong>TDEE:</strong> ${TDEE.toFixed(2)} kcal/day</p>
-                <p><strong>TEF:</strong> ${TEF.toFixed(2)} kcal/day</p>
+                <p>BMR: <strong>${BMR.toFixed(2)}</strong> kcal/day</p>
+                <div class="explanation">BMR (Basal Metabolic Rate) is the number of calories your body needs to maintain basic physiological functions like breathing and circulation while at rest.</div>
+                <p>TDEE: <strong>${TDEE.toFixed(2)}</strong> kcal/day</p>
+                <div class="explanation">TDEE (Total Daily Energy Expenditure) is the total number of calories you burn in a day, considering your activity level.</div>
+                <p>TEF: <strong>${TEF.toFixed(2)}</strong> kcal/day</p>
+                <div class="explanation">TEF (Thermic Effect of Food) is the amount of calories burned during the process of digesting and metabolizing food, typically around 10% of TDEE.</div>
             `;
     }
   </script>
